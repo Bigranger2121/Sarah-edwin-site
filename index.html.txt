@@ -1826,7 +1826,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
     </div>
 
     <form class="cta-form reveal" data-delay="2" id="contactForm" novalidate
-          action="https://sarah-edwin-form.micheal-marable.workers.dev"
+        action="https://sarah-edwin-form.micheal-marable.workers.dev"
           method="POST">
       <h3 class="cta-form__title">Schedule a Consultation</h3>
 
