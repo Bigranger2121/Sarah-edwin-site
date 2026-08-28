@@ -48,9 +48,9 @@
   --cream-warm: #f0e9d8;
   --paper:      #fcfaf5;
 
-  --clay:       #b07355;
-  --clay-deep:  #8f5a40;
-  --clay-soft:  rgba(176, 115, 85, 0.12);
+  --clay:       #b98a44;
+  --clay-deep:  #8f6a32;
+  --clay-soft:  rgba(185, 138, 68, 0.12);
 
   --muted:      #6b6e75;
   --muted-soft: #9b9ea5;
@@ -265,9 +265,10 @@ section { padding-top: var(--section-py); padding-bottom: var(--section-py); pos
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 36px;
+  gap: 0;
   align-items: center;
 }
+.nav-list li + li { margin-left: clamp(16px, 2.1vw, 32px); }
 .nav-list a {
   font-size: 14px;
   letter-spacing: 0.02em;
@@ -276,6 +277,7 @@ section { padding-top: var(--section-py); padding-bottom: var(--section-py); pos
   transition: color 0.4s var(--ease);
   position: relative;
   padding: 6px 0;
+  white-space: nowrap;
 }
 .nav-list a::after {
   content: "";
@@ -301,6 +303,7 @@ section { padding-top: var(--section-py); padding-bottom: var(--section-py); pos
   display: inline-flex; align-items: center; gap: 10px;
   font-weight: 500;
   font-family: var(--sans);
+  white-space: nowrap;
 }
 .header-cta:hover { background: var(--cream); color: var(--ink); border-color: var(--cream); }
 
@@ -381,7 +384,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   inset: 0;
   background:
     linear-gradient(180deg, rgba(20,23,31,0.55) 0%, rgba(20,23,31,0.28) 28%, rgba(20,23,31,0.45) 60%, rgba(20,23,31,0.82) 100%),
-    radial-gradient(120% 80% at 80% 20%, rgba(176,115,85,0.18) 0%, transparent 60%);
+    radial-gradient(120% 80% at 80% 20%, rgba(185,138,68,0.18) 0%, transparent 60%);
   pointer-events: none;
 }
 .hero__grain {
@@ -594,7 +597,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   padding: 6px 12px;
   border: 1px solid var(--clay);
   border-radius: 999px;
-  background: rgba(176,115,85,0.06);
+  background: rgba(185,138,68,0.06);
 }
 
 /* Supporting capability — single column, full width, distinct treatment */
@@ -618,6 +621,22 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
 .service-card--supporting .cap-list li { color: var(--on-dark-muted); }
 .service-card--supporting .flagship-badge { color: var(--cream); border-color: var(--on-dark-line); background: transparent; }
 .service-card--supporting__left { display: flex; flex-direction: column; gap: 22px; }
+
+/* Methodology link inside service cards */
+.service-card__link {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--clay-deep);
+  transition: gap 0.4s var(--ease), color 0.4s var(--ease);
+}
+.service-card__link:hover { gap: 16px; color: var(--ink); }
+.service-card--supporting .service-card__link { color: var(--clay); }
+.service-card--supporting .service-card__link:hover { color: var(--on-dark); }
 
 /* =========================================================================
    Modernization visual interstitial
@@ -644,7 +663,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   position: absolute; inset: 0;
   background:
     linear-gradient(90deg, rgba(20,23,31,0.92) 0%, rgba(20,23,31,0.6) 55%, rgba(20,23,31,0.3) 100%),
-    radial-gradient(70% 80% at 15% 50%, rgba(176,115,85,0.16) 0%, transparent 60%);
+    radial-gradient(70% 80% at 15% 50%, rgba(185,138,68,0.16) 0%, transparent 60%);
 }
 .mod-visual__inner { max-width: 720px; }
 .mod-visual h2 {
@@ -664,6 +683,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   max-width: 50ch;
   margin: 0 0 32px;
 }
+.mod-visual__ctas { display: flex; flex-wrap: wrap; gap: 14px; }
 
 /* =========================================================================
    Proof / Metrics
@@ -961,6 +981,114 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
 }
 .step__body p { color: var(--on-dark-muted); font-size: 15.5px; line-height: 1.6; margin: 0; max-width: 52ch; }
 
+/* Methodology callout at the end of the Approach steps */
+.approach__more {
+  border-top: 1px solid var(--on-dark-line);
+  padding-top: clamp(36px, 4vw, 52px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+.approach__more p {
+  color: var(--on-dark-muted);
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 50ch;
+}
+.approach__more strong { color: var(--on-dark); font-weight: 500; }
+
+/* =========================================================================
+   Insight / Resources
+   ========================================================================= */
+.insight { background: var(--cream); border-top: 1px solid var(--ink-line-2); }
+.insight__head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 64px;
+}
+.insight__head h2 { max-width: 13ch; }
+.insight__head h2 em { font-style: italic; color: var(--clay-deep); }
+
+.insight__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink-line);
+}
+.insight-card {
+  padding: 44px 36px 40px 0;
+  border-bottom: 1px solid var(--ink-line);
+  border-right: 1px solid var(--ink-line);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  transition: background 0.5s var(--ease);
+}
+.insight-card:last-child { border-right: 0; }
+.insight-card:not(:first-child) { padding-left: 36px; }
+.insight-card:hover { background: var(--paper); }
+.insight-card__tag {
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay-deep);
+  font-weight: 600;
+}
+.insight-card h3 {
+  font-weight: 400;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(21px, 1.8vw, 26px);
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+  color: var(--ink);
+}
+.insight-card h3 em { font-style: italic; color: var(--clay-deep); }
+.insight-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+  flex: 1;
+}
+.insight-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--clay-deep);
+  margin-top: 4px;
+  transition: gap 0.4s var(--ease);
+}
+.insight-card:hover .insight-card__link { gap: 16px; }
+
+.insight__foot {
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid var(--ink-line-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.insight__foot p {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(18px, 1.6vw, 21px);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 40ch;
+}
+
 /* =========================================================================
    Atlanta / National Reach
    ========================================================================= */
@@ -1051,7 +1179,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   position: absolute; inset: 0;
   background:
     linear-gradient(180deg, rgba(20,23,31,0.65) 0%, rgba(20,23,31,0.78) 100%),
-    radial-gradient(80% 70% at 70% 30%, rgba(176,115,85,0.16) 0%, transparent 60%);
+    radial-gradient(80% 70% at 70% 30%, rgba(185,138,68,0.16) 0%, transparent 60%);
 }
 
 .cta__grid {
@@ -1166,12 +1294,12 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   line-height: 1.5;
   border-radius: 4px;
   border-left: 2px solid var(--clay);
-  background: rgba(176, 115, 85, 0.08);
+  background: rgba(185, 138, 68, 0.08);
   color: var(--ink);
 }
 .form-status--success {
   border-left-color: var(--clay-deep);
-  background: rgba(176, 115, 85, 0.12);
+  background: rgba(185, 138, 68, 0.12);
   color: var(--ink);
 }
 .form-status--error {
@@ -1414,8 +1542,13 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
 /* =========================================================================
    Mobile
    ========================================================================= */
+@media (max-width: 1180px) {
+  .nav-list li + li { margin-left: 15px; }
+  .nav-list a { font-size: 13px; }
+}
+
 @media (max-width: 1024px) {
-  .services__head, .proof__head, .cta__grid, .audience__grid, .atlanta__grid { grid-template-columns: 1fr; gap: 40px; }
+  .services__head, .proof__head, .cta__grid, .audience__grid, .atlanta__grid, .insight__head { grid-template-columns: 1fr; gap: 40px; }
   .services__grid { grid-template-columns: 1fr; }
   .service-card--supporting { grid-template-columns: 1fr; gap: 28px; padding: 40px 32px; }
   .proof__grid { grid-template-columns: 1fr 1fr; }
@@ -1439,6 +1572,11 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
 
   .network__head, .network__grid { grid-template-columns: 1fr; gap: 40px; }
   .network__head h2 { max-width: 100%; }
+
+  .insight__grid { grid-template-columns: 1fr; }
+  .insight-card { border-right: 0; padding: 32px 0; }
+  .insight-card:not(:first-child) { padding-left: 0; }
+  .insight-card:last-child { border-bottom: 0; }
 }
 
 @media (max-width: 720px) {
@@ -1461,15 +1599,15 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   .nav-list--mobile li { border-bottom: 1px solid var(--ink-line-2); }
   .nav-list--mobile a {
     font-family: var(--serif);
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 400;
     color: var(--ink);
-    padding: 20px 0;
+    padding: 18px 0;
     display: block;
     letter-spacing: -0.005em;
   }
   .nav-list--mobile a::after { display: none; }
-  .nav-list--mobile .header-cta { display: inline-flex; margin-top: 24px; background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .nav-list--mobile .header-cta { display: inline-flex; margin-top: 24px; background: var(--ink); color: var(--cream); border-color: var(--ink); font-size: 15px; }
 
   .hero { padding-top: 120px; padding-bottom: 56px; min-height: 92vh; min-height: 92svh; }
   .hero__meta { margin-bottom: 32px; flex-wrap: wrap; gap: 12px; font-size: 11px; }
@@ -1499,9 +1637,10 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   .audience-list li::before, .audience-list li:nth-child(even)::before { left: 0; top: 25px; }
 
   .footer__top { grid-template-columns: 1fr; gap: 40px; }
-  .services__head h2, .proof__head h2, .cta__head h2 { max-width: 100%; }
+  .services__head h2, .proof__head h2, .cta__head h2, .insight__head h2 { max-width: 100%; }
   .step { grid-template-columns: 48px 1fr; gap: 16px; padding-bottom: 40px; }
   .steps { gap: 40px; }
+  .insight__foot { flex-direction: column; align-items: flex-start; }
 }
 </style>
 
@@ -1572,7 +1711,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
             "itemOffered": {
               "@type": "Service",
               "name": "Transition Advisory",
-              "description": "IT due diligence, Day 1 readiness, TSA planning and exit, carve-out execution, post-close integration, ERP decision support, infrastructure planning, and IT operating model support for M&A, divestitures, and enterprise transitions."
+              "description": "IT due diligence, M&A integration planning, divestiture and carve-out support, Day 1 readiness, TSA design and exit planning, post-close execution, technology risk assessment, and IT operating model planning for M&A, divestitures, and enterprise transitions."
             }
           },
           {
@@ -1580,7 +1719,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
             "itemOffered": {
               "@type": "Service",
               "name": "Managed Modernization",
-              "description": "Modernization support for organizations upgrading infrastructure, cloud, cybersecurity, applications, ERP, data platforms, and operating models after a major transition or growth event."
+              "description": "Cloud migration, data center consolidation, ERP modernization, infrastructure transformation, cybersecurity modernization, application rationalization, data and reporting enablement, and IT program execution for organizations modernizing after a major transition or growth event."
             }
           },
           {
@@ -1611,6 +1750,24 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
       "name": "The Sarah Edwin Group",
       "publisher": { "@id": "https://www.sarahedwingroup.com/#organization" },
       "inLanguage": "en-US"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://www.sarahedwingroup.com/#nav",
+      "name": [
+        "Services", "Who We Serve", "Approach", "How We Work",
+        "Resources", "Clients", "Network", "Contact"
+      ],
+      "url": [
+        "https://www.sarahedwingroup.com/#services",
+        "https://www.sarahedwingroup.com/#audience",
+        "https://www.sarahedwingroup.com/#approach",
+        "https://www.sarahedwingroup.com/how-we-work/",
+        "https://www.sarahedwingroup.com/resources/",
+        "https://www.sarahedwingroup.com/#clients",
+        "https://www.sarahedwingroup.com/#network",
+        "https://www.sarahedwingroup.com/#contact"
+      ]
     }
   ]
 }
@@ -1634,10 +1791,11 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
 
     <nav aria-label="Primary">
       <ul class="nav-list">
-        <li><a href="#top">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#audience">Who We Serve</a></li>
         <li><a href="#approach">Approach</a></li>
+        <li><a href="/how-we-work/">How We Work</a></li>
+        <li><a href="/resources/">Resources</a></li>
         <li><a href="#clients">Clients</a></li>
         <li><a href="#network">Network</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1658,6 +1816,8 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
       <li><a href="#services">Services</a></li>
       <li><a href="#audience">Who We Serve</a></li>
       <li><a href="#approach">Approach</a></li>
+      <li><a href="/how-we-work/">How We Work</a></li>
+      <li><a href="/resources/">Resources</a></li>
       <li><a href="#clients">Clients</a></li>
       <li><a href="#network">Network</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1682,7 +1842,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   <div class="shell hero__inner">
     <div class="hero__meta reveal">
       <span><span class="dot"></span>Atlanta &middot; North America &amp; Beyond</span>
-      <span>Est. — Built for what's next</span>
+      <span>IT Advisory &middot; Modernization &middot; Talent</span>
     </div>
 
     <h1 id="heroHeadline" class="reveal" data-delay="1">Built for <em>what&rsquo;s next.</em></h1>
@@ -1697,7 +1857,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
 
     <div class="hero__ctas reveal" data-delay="4">
       <a href="#contact" class="btn btn-light">Schedule a Consultation <span class="arrow" aria-hidden="true"></span></a>
-      <a href="#services" class="btn btn-ghost-light">Explore Our Services <span class="arrow" aria-hidden="true"></span></a>
+      <a href="/how-we-work/" class="btn btn-ghost-light">See How We Work <span class="arrow" aria-hidden="true"></span></a>
     </div>
 
     <div class="hero__rail reveal" data-delay="5">
@@ -1748,7 +1908,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
         <span class="flagship-badge">Flagship Practice</span>
         <span class="service-card__tag">Transition Advisory</span>
         <h3>For the moments when <em>the&nbsp;deal</em> meets the&nbsp;tech.</h3>
-        <p>IT due diligence, Day&nbsp;1 readiness, TSA planning and exit, carve-out execution, post-close integration, ERP decision support, infrastructure planning, and IT operating model support for M&amp;A, divestitures, and enterprise transitions.</p>
+        <p>IT due diligence, M&amp;A integration planning, Day&nbsp;1 readiness, TSA design and exit, carve-out execution, post-close integration, technology risk assessment, and IT operating model support for M&amp;A, divestitures, and enterprise transitions.</p>
         <ul class="cap-list">
           <li>IT due diligence</li>
           <li>M&amp;A integration planning</li>
@@ -1759,6 +1919,9 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
           <li>Technology risk assessment</li>
           <li>IT operating model planning</li>
         </ul>
+        <a href="/how-we-work/" class="service-card__link">How we deliver this work
+          <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M0 4.5h12M8.5 1l3.5 3.5L8.5 8" stroke="currentColor"/></svg>
+        </a>
       </article>
 
       <!-- Flagship 2 -->
@@ -1766,7 +1929,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
         <span class="flagship-badge">Flagship Practice</span>
         <span class="service-card__tag">Managed Modernization</span>
         <h3>Modernizing the systems that <em>run</em> the business.</h3>
-        <p>Modernization support for organizations upgrading infrastructure, cloud, cybersecurity, applications, ERP, data platforms, and operating models after a major transition or growth event.</p>
+        <p>Cloud migration, data center consolidation, ERP modernization, infrastructure transformation, cybersecurity modernization, application rationalization, data and reporting enablement, and program execution for organizations modernizing after a major transition or growth event.</p>
         <ul class="cap-list">
           <li>Cloud migration</li>
           <li>Data center consolidation</li>
@@ -1777,6 +1940,9 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
           <li>Data &amp; reporting enablement</li>
           <li>IT program execution</li>
         </ul>
+        <a href="/how-we-work/" class="service-card__link">How we deliver this work
+          <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M0 4.5h12M8.5 1l3.5 3.5L8.5 8" stroke="currentColor"/></svg>
+        </a>
       </article>
 
       <!-- Supporting capability -->
@@ -1786,6 +1952,9 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
           <span class="service-card__tag">Talent On-Demand</span>
           <h3>Senior IT expertise, embedded <em>where</em> it&rsquo;s needed.</h3>
           <p>Vetted senior IT professionals embedded with client teams to fill critical delivery, leadership, program management, cybersecurity, infrastructure, and transformation gaps.</p>
+          <a href="#network" class="service-card__link">See who we look for
+            <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M0 4.5h12M8.5 1l3.5 3.5L8.5 8" stroke="currentColor"/></svg>
+          </a>
         </div>
         <ul class="cap-list">
           <li>Senior IT consultants</li>
@@ -1816,7 +1985,10 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
     <span class="eyebrow on-dark reveal">02 &middot; Managed Modernization</span>
     <h2 class="reveal" data-delay="1" style="margin-top:28px;">From legacy <em>to leverage.</em></h2>
     <p class="reveal" data-delay="2">A practical modernization model for organizations ready to retire technical debt, consolidate platforms, and unlock the operating performance that growth and transition demand.</p>
-    <a href="#contact" class="btn btn-ghost-light reveal" data-delay="3">Talk to a Practice Lead <span class="arrow" aria-hidden="true"></span></a>
+    <div class="mod-visual__ctas reveal" data-delay="3">
+      <a href="#contact" class="btn btn-light">Talk to a Practice Lead <span class="arrow" aria-hidden="true"></span></a>
+      <a href="/resources/cloud-migration-savings/" class="btn btn-ghost-light">Why cloud savings disappear <span class="arrow" aria-hidden="true"></span></a>
+    </div>
   </div>
 </section>
 
@@ -2041,6 +2213,62 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
           </div>
         </li>
       </ol>
+
+      <div class="approach__more reveal">
+        <p><strong>Five steps is the summary.</strong> Behind it sits the delivery method our practitioners are trained on — cutover discipline, readiness measured as a number rather than a colour, go/no-go criteria agreed in advance, and savings verified with finance rather than claimed.</p>
+        <a href="/how-we-work/" class="btn btn-light">See the full methodology <span class="arrow" aria-hidden="true"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================================
+     INSIGHT / RESOURCES
+========================================================================= -->
+<section class="insight" id="insight">
+  <div class="shell">
+    <div class="insight__head">
+      <div>
+        <span class="eyebrow reveal">Resources</span>
+        <h2 class="reveal" data-delay="1" style="margin-top:24px;">Notes from the <em>work.</em></h2>
+      </div>
+      <p class="body-copy reveal" data-delay="2">
+        The failure modes we see most often, and what prevents them. Specific, drawn from live programs, and useful whether or not you ever hire us.
+      </p>
+    </div>
+
+    <div class="insight__grid">
+      <a href="/resources/tsa-exit-business-case/" class="insight-card reveal">
+        <span class="insight-card__tag">Transition Advisory</span>
+        <h3>Six ways TSA exits fail to <em>deliver</em> their business case</h3>
+        <p>Services get exited more or less on schedule. Then finance runs the numbers and the run-rate has barely moved. Six mechanisms cause it — all six are preventable.</p>
+        <span class="insight-card__link">Read
+          <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M0 4.5h12M8.5 1l3.5 3.5L8.5 8" stroke="currentColor"/></svg>
+        </span>
+      </a>
+
+      <a href="/resources/cloud-migration-savings/" class="insight-card reveal" data-delay="1">
+        <span class="insight-card__tag">Managed Modernization</span>
+        <h3>Why your cloud migration savings <em>haven&rsquo;t</em> appeared</h3>
+        <p>The workloads moved and the applications run. The failures are financial rather than technical, and they trace back to decisions made in the first eight weeks.</p>
+        <span class="insight-card__link">Read
+          <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M0 4.5h12M8.5 1l3.5 3.5L8.5 8" stroke="currentColor"/></svg>
+        </span>
+      </a>
+
+      <a href="/day-1-readiness/" class="insight-card reveal" data-delay="2">
+        <span class="insight-card__tag">Chapter Excerpt</span>
+        <h3>Day 1 <em>Readiness</em></h3>
+        <p>A full chapter from our practitioner training material. Scope discipline, cutover runbooks, rehearsal, readiness measurement, and the go/no-go decision.</p>
+        <span class="insight-card__link">Request the chapter
+          <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden="true"><path d="M0 4.5h12M8.5 1l3.5 3.5L8.5 8" stroke="currentColor"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="insight__foot reveal">
+      <p>Day 1 is the only part of a transaction with a fixed date and a binary outcome.</p>
+      <a href="/resources/" class="btn btn-secondary">All resources <span class="arrow" aria-hidden="true"></span></a>
     </div>
   </div>
 </section>
@@ -2190,6 +2418,9 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
           method="POST">
       <h3 class="cta-form__title">Schedule a Consultation</h3>
 
+      <!-- Identify which form this is, server-side -->
+      <input type="hidden" name="form_type" value="contact" />
+
       <!-- Honeypot field — hidden from humans, bots fill it and get rejected -->
       <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">
         <label for="f-website">Website (leave blank)</label>
@@ -2257,6 +2488,8 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
           <li><a href="#services">Services</a></li>
           <li><a href="#audience">Who We Serve</a></li>
           <li><a href="#approach">Approach</a></li>
+          <li><a href="/how-we-work/">How We Work</a></li>
+          <li><a href="/resources/">Resources</a></li>
           <li><a href="#clients">Clients</a></li>
           <li><a href="#network">Network</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -2353,7 +2586,7 @@ body.menu-open .nav-toggle span:nth-child(2) { transform: translateY(-4px) rotat
   }
 
   // Contact + Network forms — both POST to the same Worker
-  // The 'form_type' field on the network form tells the Worker which template to use
+  // The 'form_type' field tells the Worker which template to use
   [document.getElementById('contactForm'), document.getElementById('networkForm')]
     .filter(Boolean)
     .forEach(function(form) { wireForm(form); });
