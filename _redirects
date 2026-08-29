@@ -1,0 +1,7 @@
+# SEG — convenience redirects
+/how-we-work.html             /how-we-work/                            301
+/resources.html               /resources/                              301
+/article-tsa-exit.html        /resources/tsa-exit-business-case/       301
+/article-cloud-savings.html   /resources/cloud-migration-savings/      301
+/methodology                  /how-we-work/                            301
+/insights                     /resources/                              301
